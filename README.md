@@ -1,36 +1,82 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Digital Media — Modern Agency Landing Page
 
-## Getting Started
+A visually stunning and fully responsive digital agency landing page built with Next.js 14, Tailwind CSS v4, and Framer Motion.
+Designed to showcase creativity, modern UI design, and performance optimization for digital marketing, creative, or tech agencies.
 
-First, run the development server:
+✨ Features
 
-```bash
+🎨 Modern Design — Elegant, professional aesthetic with fluid layouts
+
+📱 Fully Responsive — Works seamlessly across all devices (mobile, tablet, desktop)
+
+⚡ High Performance — Built using Next.js App Router for optimized routing and rendering
+
+🎬 Smooth Animations — Framer Motion adds dynamic transitions and engaging scroll effects
+
+🔍 SEO Optimized — Semantic HTML structure and proper meta configuration
+
+♿ Accessible Design — WCAG-compliant with correct ARIA labels and color contrast
+
+🧩 Reusable Components — Modular, maintainable UI components using modern React patterns
+
+🧰 Tech Stack
+Category	Technology
+Framework	Next.js 14
+
+Styling	Tailwind CSS v4
+
+Animations	Framer Motion
+
+Fonts	Inter & Poppins (Google Fonts)
+Images	Unsplash
+ (for placeholder visuals)
+🛠️ Getting Started
+1. Clone the repository
+git clone https://github.com/your-username/digital-media-agency.git
+cd digital-media-agency
+
+2. Install dependencies
+npm install
+# or
+yarn install
+
+3. Run the development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Then open http://localhost:3000
+ to view it in your browser.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+🧱 Project Structure
+digital-media-agency/
+├── app/
+│   ├── components/      # Reusable UI components
+│   ├── sections/        # Landing page sections (Hero, About, Services, etc.)
+│   ├── layout.js        # App layout configuration
+│   └── page.js          # Main landing page
+├── public/              # Static assets (images, icons)
+├── styles/              # Tailwind global styles
+├── package.json
+├── postcss.config
+└── tailwind.config.js
 
-## Learn More
+📦 Deployment
 
-To learn more about Next.js, take a look at the following resources:
+This project is optimized for Vercel, the creators of Next.js.
+Deploy it directly from your GitHub repo with one click:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+👉 Deploy with Vercel
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+🤝 Contributing
 
-## Deploy on Vercel
+Contributions, issues, and feature requests are welcome!
+Feel free to open an issue
+ or submit a pull request.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+🧑‍💻 Author
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Maurice Ngicho
+
+🪪 License
+
+This project is licensed under the MIT License.
