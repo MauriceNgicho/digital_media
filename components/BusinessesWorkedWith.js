@@ -71,7 +71,7 @@ export default function BusinessesWorkedWith() {
           className="mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-4">
-            Businesses We've Worked With
+            Businesses We&apos;ve Worked With
           </h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
             Trusted by companies across industries to streamline their operations and drive growth.
