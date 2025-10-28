@@ -20,10 +20,19 @@ module.exports = {
           700: '#0369a1',
           800: '#075985',
           900: '#0c4a6e',
+          red: '#e1292c',
+          dark: '#313130',
+          white: '#ffffff',
         },
         accent: {
           500: '#f59e0b',
           600: '#d97706',
+        },
+        // Sawava brand colors
+        Sawava: {
+          red: '#e1292c',
+          dark: '#313130',
+          white: '#ffffff',
         },
       },
       fontFamily: {

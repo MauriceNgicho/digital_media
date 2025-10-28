@@ -6,7 +6,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   const footerLinks = {
-    Services: ['Brand Identity', 'Web Development', 'Digital Marketing', 'Content Creation'],
+    Services: ['Executive/Admin Support', 'Finance & Strategic Admin', 'Web/Email Marketing & Events', 'Digital Content Creation', 'HR & Recruitment'],
     Company: ['About Us', 'Our Team', 'Careers', 'Contact'],
     Resources: ['Blog', 'Case Studies', 'FAQs', 'Support'],
     Legal: ['Privacy Policy', 'Terms of Service', 'Cookie Policy'],
@@ -21,7 +21,7 @@ export default function Footer() {
               className="text-2xl font-display font-bold text-white mb-4"
               whileHover={{ scale: 1.05 }}
             >
-              Digital Media
+              Sawava
             </motion.h3>
             <p className="text-gray-400 mb-6 leading-relaxed">
               Transforming brands through innovative digital solutions. We create experiences that inspire and deliver results.
@@ -81,7 +81,7 @@ export default function Footer() {
         <div className="border-t border-gray-800 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400 text-sm mb-4 md:mb-0">
-              © {currentYear} Digital Media. All rights reserved.
+              © {currentYear} Sawava. All rights reserved.
             </p>
             <div className="flex space-x-6">
               <motion.a
