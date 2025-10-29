@@ -77,7 +77,7 @@ export default function ContactForm() {
             Schedule an Appointment
           </h2>
           <p className="text-lg text-[#555] max-w-2xl mx-auto">
-            Let’s create something extraordinary together. Reach out today and tell us about your project.
+            Let&apos;s create something extraordinary together. Reach out today and tell us about your project.
           </p>
         </motion.div>
 
@@ -90,10 +90,10 @@ export default function ContactForm() {
           >
             <div className="bg-[#313130] text-white rounded-2xl p-8 shadow-lg">
               <h3 className="text-3xl font-display font-bold mb-6 text-[#e1292c]">
-                Let’s Start a Conversation
+                Let&apos;s Start a Conversation
               </h3>
               <p className="mb-8 text-gray-200 leading-relaxed">
-                We’re excited to learn about your goals and help bring your ideas to life. Our team at Sawava is ready to deliver tailored, efficient solutions that fit your vision.
+                We&apos;re excited to learn about your goals and help bring your ideas to life. Our team at Sawava is ready to deliver tailored, efficient solutions that fit your vision.
               </p>
 
               <div className="space-y-6">

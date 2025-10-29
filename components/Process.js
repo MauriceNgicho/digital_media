@@ -209,14 +209,14 @@ export default function Process() {
                   </svg>
                 </motion.a>
 
-                <motion.a
+                {/* <motion.a
                   href="#services"
                   className="inline-flex items-center border-2 border-white text-white px-10 py-4 rounded-full text-lg font-semibold hover:bg-white hover:text-[#313130] transition-all duration-300"
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                 >
                   View Services
-                </motion.a>
+                </motion.a> */}
               </div>
             </div>
           </div>

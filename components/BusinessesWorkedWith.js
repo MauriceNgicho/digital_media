@@ -60,75 +60,71 @@ export default function BusinessesWorkedWith() {
     },
   ];
 
+  const container = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.08,
+      },
+    },
+  };
+
+  const item = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: { duration: 0.5 },
+    },
+  };
+
   return (
-    <section className="py-20 bg-gray-50" ref={ref}>
+    <section className="py-16 bg-gradient-to-b from-white to-gray-50" ref={ref}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        {/* Section Header */}
+        {/* Section Header with Red Background */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
           className="mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-4">
+          {/* Section Label with Red Background */}
+          <div className="inline-flex items-center justify-center gap-3 mb-6 bg-[#e1292c]/10 px-6 py-3 rounded-full">
+            <div className="w-8 h-0.5 bg-[#e1292c]"></div>
+            <span className="text-[#e1292c] font-semibold tracking-wider uppercase text-sm">Trusted Partners</span>
+            <div className="w-8 h-0.5 bg-[#e1292c]"></div>
+          </div>
+
+          <h2 className="text-3xl md:text-4xl font-display font-bold text-[#313130] mb-4">
             Businesses We&apos;ve Worked With
           </h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+          <p className="text-lg text-[#313130]/70 max-w-3xl mx-auto leading-relaxed">
             Trusted by companies across industries to streamline their operations and drive growth.
           </p>
         </motion.div>
 
-        {/* Scrolling Marquee */}
-        {/* <div className="relative overflow-hidden">
-          <motion.div
-            className="flex gap-16"
-            animate={{ x: ['0%', '-50%'] }}
-            transition={{
-              duration: 25,
-              repeat: Infinity,
-              ease: 'linear',
-            }}
-          >
-            {[...businesses, ...businesses].map((business, index) => (
-              <div
-                key={index}
-                className="relative w-32 h-16 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 hover:scale-105 transition-all duration-500 ease-in-out flex-shrink-0"
-              >
-                <Image
-                  src={business.logo}
-                  alt={business.alt}
-                  fill
-                  className="object-contain"
-                />
-              </div>
-            ))}
-          </motion.div>
-        </div> */}
-        
-        {/* Static Logo Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-10 justify-items-center">
+        {/* Simple Logo Grid */}
+        <motion.div
+          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-12 items-center"
+          variants={container}
+          initial="hidden"
+          animate={isVisible ? 'visible' : 'hidden'}
+        >
           {businesses.map((business, index) => (
-            <div key={index} className="relative w-32 h-16 flex items-center justify-center">
+            <motion.div
+              key={index}
+              variants={item}
+              className="relative w-full h-20 flex items-center justify-center"
+            >
               <Image
                 src={business.logo}
                 alt={business.alt}
                 fill
                 className="object-contain"
               />
-            </div>
+            </motion.div>
           ))}
-        </div>
-
-        {/* Tagline */}
-        <motion.div
-          className="text-center mt-12"
-          initial={{ opacity: 0, y: 20 }}
-          animate={isVisible ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.6, duration: 0.8 }}
-        >
-          <p className="text-gray-600 italic">
-            “Join hundreds of businesses that trust Sawava for their virtual assistant needs.”
-          </p>
         </motion.div>
       </div>
     </section>
