@@ -117,6 +117,7 @@ export default function RootLayout({ children }) {
   const orgLd = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
+    '@id': `${siteUrl}/#organization`,
     name: 'Sawava',
     alternateName: 'Sawava Virtual Assistants',
     url: siteUrl,
@@ -168,9 +169,8 @@ export default function RootLayout({ children }) {
     },
     geo: {
       '@type': 'GeoCoordinates',
-      // Add your coordinates if you have a physical location
-      latitude: -0.3031, // Nakuru coordinates (example)
-      longitude: 36.0800,
+      latitude: -1.2921,
+      longitude: 36.8219,
     },
     openingHoursSpecification: [
       {

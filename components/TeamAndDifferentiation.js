@@ -23,7 +23,7 @@ export default function TeamAndDifferentiation() {
       expertise: [ 'System Architecture/Design', 'Infrastructure Management', 'Tech Strategy & Leadership' ]
     },
     {
-      name: 'Ken joe Mwenda',
+      name: 'Ken Joe Mwenda',
       role: 'Lead Virtual Assistant',
       description: "Ken Joe is our front-line specialist in digital content and social media. As the Lead Virtual Assistant, he translates your ideas into engaging online campaigns and is dedicated to managing your community, scheduling your posts, and ensuring your brand maintains an active, professional presence across all platforms.",
       image: '/images/team/kenjoe.jpeg',
@@ -132,7 +132,6 @@ export default function TeamAndDifferentiation() {
                   alt={member.name}
                   width={400}
                   height={288}
-                  // className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   className="w-full h-full object-cover object-top transition-opacity duration-700"
                   style={{ objectPosition: '50% 30%' }}
                 />

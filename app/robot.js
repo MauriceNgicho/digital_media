@@ -1,6 +1,5 @@
-// app/robots.js
 export default function robots() {
-  const baseUrl = 'https://sawava.com';
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://sawava.ke';
   
   return {
     rules: [

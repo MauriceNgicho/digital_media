@@ -64,7 +64,7 @@ export default function Testimonials() {
   const scroll = (direction) => {
     const container = scrollContainerRef.current;
     if (container) {
-      const scrollAmount = 420; // Card width + gap
+      const scrollAmount = 424; // Card width (400px) + gap (24px)
       container.scrollBy({
         left: direction === 'left' ? -scrollAmount : scrollAmount,
         behavior: 'smooth'

@@ -73,7 +73,7 @@ export default function ContactForm() {
       setFormData({ name: '', email: '', phone: '', service: '', message: '' });
       setTimeout(() => setSubmitStatus(null), 5000);
     } catch (error) {
-      console.error('Emailjs Error:', error);
+      console.error('Failed to send email:', error?.message || 'unknown error');
       setSubmitStatus('error');
       setTimeout(() => setSubmitStatus(null), 5000);
     } finally {
@@ -89,7 +89,7 @@ export default function ContactForm() {
 
   const socials = [
     { name: 'Instagram', icon: <FaInstagram />, link: 'https://www.instagram.com/sawava.ke/' },
-    { name: 'Tiktok', icon: <FaTiktok />, link: 'https://www.tiktok.com/@savawa.ke/' },
+    { name: 'Tiktok', icon: <FaTiktok />, link: 'https://www.tiktok.com/@sawava.ke/' },
     { name: 'Facebook', icon: <FaFacebookF />, link: 'https://www.facebook.com/sawava.ke' },
   ];
 

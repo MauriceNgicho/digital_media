@@ -14,9 +14,9 @@ export default function BusinessesWorkedWith() {
       alt: 'Br8ke The Silence Logo'
     },
     { 
-      name: 'Shisha Eclips', 
+      name: 'Shisha Eclipse', 
       logo: '/logos/Shisha Eclipse.png',
-      alt: 'Shisha Eclips Logo'
+      alt: 'Shisha Eclipse Logo'
     },
     { 
       name: 'Ascencia Living', 
@@ -24,7 +24,7 @@ export default function BusinessesWorkedWith() {
       alt: 'Ascencia Living Logo'
     },
     { 
-      name: 'Learn Physics', 
+      name: 'Learn Science', 
       logo: '/logos/Learn Science.png',
       alt: 'Learn Physics Logo'
     },

@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import Services from './Services';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -15,7 +14,7 @@ export default function Footer() {
       { label: 'Social & Community Management', href: '#services' },
       { label: 'Web/Email Marketing & Events', href: '#services' },
     ],
-    company: [
+    Company: [
       { label: 'About Us', href: '#about' },
       { label: 'Our Team', href: '#team' },
       { label: 'Careers', href: '#' },
@@ -43,7 +42,7 @@ export default function Footer() {
     },
     { 
       name: 'TikTok', 
-      href: 'https://www.tiktok.com/@savawa.ke/',
+      href: 'https://www.tiktok.com/@swava.ke/',
       icon: 'M21 7.9c-1.4 0-2.8.2-4.1.7v5.2c0 3.8-3.1 7-7 7s-7-3.1-7-7 3.1-7 7-7c.1 0 .3 0 .4 0v3c-.1 0-.3 0-.4 0-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4v-7.2c1.3-.4 2.7-.6 4.1-.6 2.5 0 4.9 1 6.8 2.8v-3.7c-1.9-1.8-4.3-2.8-6.8-2.8z'
     },
     { 

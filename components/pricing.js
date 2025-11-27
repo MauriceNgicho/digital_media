@@ -13,8 +13,8 @@ export default function Pricing() {
       name: 'Starter',
       tagline: 'Perfect for Solo Entrepreneurs',
       description: 'Get essential support to handle your day-to-day admin tasks',
-      monthlyPrice: '299',
-      annualPrice: '2,990',
+  monthlyPrice: 299,
+  annualPrice: 2990,
       savings: 'Save $598/year',
       features: [
         { text: 'Up to 20 hours/month', included: true },
@@ -33,8 +33,8 @@ export default function Pricing() {
       name: 'Growth',
       tagline: 'Most Popular for Small Businesses',
       description: 'Comprehensive support across multiple service areas',
-      monthlyPrice: '599',
-      annualPrice: '5,990',
+  monthlyPrice: 599,
+  annualPrice: 5990,
       savings: 'Save $1,198/year',
       features: [
         { text: 'Up to 40 hours/month', included: true },
@@ -53,9 +53,9 @@ export default function Pricing() {
       name: 'Enterprise',
       tagline: 'For Growing Teams & Organizations',
       description: 'Full-service support with dedicated team members',
-      monthlyPrice: '1,299',
-      annualPrice: '12,990',
-      savings: 'Save $2,598/year',
+  monthlyPrice: 1299,
+  annualPrice: 12990,
+      savings: 'Save $2598/year',
       features: [
         { text: 'Unlimited hours/month', included: true },
         { text: 'Everything in Growth, plus:', included: true, bold: true },
@@ -131,6 +131,9 @@ export default function Pricing() {
       transition: { duration: 0.6 },
     },
   };
+
+  // Formatter for prices (respects user's locale)
+  const priceFormatter = new Intl.NumberFormat(undefined);
 
   return (
     <>
@@ -238,7 +241,7 @@ export default function Pricing() {
                   <div className="flex items-baseline justify-center gap-1">
                     <span className="text-2xl text-[#313130] font-semibold">$</span>
                     <span className="text-5xl font-display font-bold text-[#313130]">
-                      {billingCycle === 'monthly' ? pkg.monthlyPrice : pkg.annualPrice}
+                      {billingCycle === 'monthly' ? priceFormatter.format(pkg.monthlyPrice) : priceFormatter.format(pkg.annualPrice)}
                     </span>
                     <span className="text-[#313130]/60">
                       /{billingCycle === 'monthly' ? 'mo' : 'yr'}
