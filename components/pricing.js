@@ -55,7 +55,7 @@ export default function Pricing() {
       description: 'Full-service support with dedicated team members',
   monthlyPrice: 1299,
   annualPrice: 12990,
-      savings: 'Save $2598/year',
+      savings: 'Save $2,598/year',
       features: [
         { text: 'Unlimited hours/month', included: true },
         { text: 'Everything in Growth, plus:', included: true, bold: true },
@@ -132,8 +132,12 @@ export default function Pricing() {
     },
   };
 
-  // Formatter for prices (respects user's locale)
-  const priceFormatter = new Intl.NumberFormat(undefined);
+  // Formatter for prices
+  const priceFormatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    maximumFractionDigits: 0,
+  });
 
   return (
     <>
@@ -239,7 +243,6 @@ export default function Pricing() {
                 {/* Pricing */}
                 <div className="text-center mb-6 pb-6 border-b-2 border-gray-100">
                   <div className="flex items-baseline justify-center gap-1">
-                    <span className="text-2xl text-[#313130] font-semibold">$</span>
                     <span className="text-5xl font-display font-bold text-[#313130]">
                       {billingCycle === 'monthly' ? priceFormatter.format(pkg.monthlyPrice) : priceFormatter.format(pkg.annualPrice)}
                     </span>

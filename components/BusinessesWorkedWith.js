@@ -26,7 +26,7 @@ export default function BusinessesWorkedWith() {
     { 
       name: 'Learn Science', 
       logo: '/logos/Learn Science.png',
-      alt: 'Learn Physics Logo'
+      alt: 'Learn Science Logo'
     },
     { 
       name: 'NCBI', 

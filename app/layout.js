@@ -193,8 +193,8 @@ export default function RootLayout({ children }) {
       '@type': 'GeoCircle',
       geoMidpoint: {
         '@type': 'GeoCoordinates',
-        latitude: -0.3031,
-        longitude: 36.0800,
+        latitude: -1.2921,
+        longitude: 36.8219,
       },
       geoRadius: '1000000', // Service radius in meters (Kenya-wide)
     },
