@@ -1,53 +1,75 @@
 'use client';
 
+import { useRef } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import useScrollAnimation from '@/hooks/useScrollAnimation';
 
 export default function Testimonials() {
   const [ref, isVisible] = useScrollAnimation(0.1);
+  const scrollContainerRef = useRef(null);
 
   const testimonials = [
     {
-      name: 'Lulu Hassan',
-      role: 'CEO, TechStart Inc.',
+      name: 'Paul Amuzuzie',
+      role: 'Br8ke The Silence/ Shisha Eclips',
       image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80',
-      content: 'Digital Media transformed our online presence completely. Their creative approach and attention to detail exceeded all our expectations. Highly recommended!',
+      content: "Before Sawava, my time was eaten up by paperwork, invoicing, and constant social media scheduling. Now, I have consistent digital content, my fortnightly newsletters go out on time, and my admin is completely automated. Sawava doesn't just manage tasks; they give me back the time I need to focus on my business and creativity.",
       rating: 5,
     },
     {
-      name: 'Bryan Mbeumo',
-      role: 'Marketing Director, GrowthCo',
+      name: 'Fiona Aynedjian',
+      role: 'Ascencia Living/ Personal Brand',
       image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80',
-      content: 'Working with this team was an absolute pleasure. They delivered a stunning website that not only looks great but has significantly increased our conversion rates.',
+      content: "Managing two brands while scaling my business was impossible until I brought in Sawava. They handle everything from our complex weekly sales reports and client file management to ensuring both my Ascencia Living and Personal Brand platforms are active and engaging. It's a true, high-level operational partnership that has transformed how I work.",
       rating: 5,
     },
     {
-      name: 'Lilian Muli',
-      role: 'Founder, Creative Studio',
+      name: 'Afiya Romain-Bains',
+      role: 'Learn Physics with Afiya',
       image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=80',
-      content: 'Their expertise in digital marketing helped us reach our target audience effectively. The ROI we achieved was beyond what we imagined possible.',
+      content: "When I need raw footage quickly turned into professional, shareable video content for my teaching platform, Sawava is my first call. Their video editing service is fast, reliable, and always hits the brief. Perfect for project-based work.",
       rating: 5,
     },
+    {
+      name: 'Royston John',
+      role: 'NCBI',
+      image: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=400&q=80',
+      content: "Sawava is essential for maintaining our high standard of digital presence. They manage our website updates, monthly newsletters, and social media outreach, ensuring the NCBI brand remains professional and accessible. They are a dedicated team that is heavily invested in our mission's success.",
+      rating: 5,
+    },
+    {
+      name: 'Kofi',
+      role: 'Kings Venture Group',
+      image: 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=400&q=80',
+      content: "We rely entirely on Sawava for digital content creation and social media publishing. They handle all the scheduling and tracking, which is vital for our brand visibility. It's a clean, efficient service that delivers exactly what we need.",
+      rating: 5,
+    },
+    {
+      name: 'Agatha Phiri',
+      role: "Agatha's Space CIC",
+      image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&q=80',
+      content: "The team provides invaluable support across the board. From building and updating our new website to managing our strategic admin and compiling data for critical funding applications, Sawava acts as a dedicated operational manager, allowing us to focus on delivering our vital community services",
+      rating: 5,
+    },
+    {
+      name: 'SisDr Sandra',
+      role: 'Oshun Ocean Sanctuary',
+      image: 'https://images.unsplash.com/photo-1520813792240-56fc4a3765a7?w=400&q=80',
+      content: "Sawava manages our entire digital content strategy. They handle our graphics, video editing, scheduling, and community engagement across all platforms. Their consistency ensures we can build a strong, active online presence without diverting internal resources.",
+      rating: 5,
+    }
   ];
 
-  const container = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-      },
-    },
-  };
-
-  const item = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6 },
-    },
+  const scroll = (direction) => {
+    const container = scrollContainerRef.current;
+    if (container) {
+      const scrollAmount = 420; // Card width + gap
+      container.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth'
+      });
+    }
   };
 
   return (
@@ -58,7 +80,7 @@ export default function Testimonials() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-12"
           initial={{ opacity: 0, y: 20 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
@@ -78,92 +100,111 @@ export default function Testimonials() {
           </p>
         </motion.div>
 
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-          variants={container}
-          initial="hidden"
-          animate={isVisible ? 'visible' : 'hidden'}
-        >
-          {testimonials.map((testimonial, index) => (
-            <motion.div
-              key={index}
-              variants={item}
-              whileHover={{ y: -8, transition: { duration: 0.3 } }}
-              className="group relative bg-white rounded-xl border-2 border-gray-100 hover:border-[#e1292c] transition-all duration-300 overflow-hidden shadow-lg hover:shadow-2xl"
-            >
-              {/* Top red accent bar */}
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#e1292c] to-[#313130] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+        {/* Scrolling Container */}
+        <div className="relative">
+          {/* Left Navigation Button */}
+          <button
+            onClick={() => scroll('left')}
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-[#e1292c] text-[#313130] hover:text-white w-12 h-12 rounded-full shadow-xl flex items-center justify-center transition-all duration-300 border-2 border-[#e1292c]/20 hover:border-[#e1292c]"
+            aria-label="Scroll left"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
 
-              {/* Quote icon background */}
-              <div className="absolute top-6 right-6 text-[#e1292c]/10 group-hover:text-[#e1292c]/20 transition-colors duration-300">
-                <svg className="w-16 h-16" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-                </svg>
-              </div>
+          {/* Right Navigation Button */}
+          <button
+            onClick={() => scroll('right')}
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-[#e1292c] text-[#313130] hover:text-white w-12 h-12 rounded-full shadow-xl flex items-center justify-center transition-all duration-300 border-2 border-[#e1292c]/20 hover:border-[#e1292c]"
+            aria-label="Scroll right"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
 
-              <div className="p-8 relative z-10">
-                {/* Star Rating */}
-                <div className="flex items-center mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <motion.svg
-                      key={i}
-                      className="w-5 h-5 text-[#e1292c]"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                      initial={{ scale: 0, rotate: -180 }}
-                      animate={isVisible ? { scale: 1, rotate: 0 } : {}}
-                      transition={{ delay: index * 0.15 + i * 0.1, type: 'spring', stiffness: 200 }}
-                    >
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </motion.svg>
-                  ))}
+          {/* Testimonials Scroll Container */}
+          <div
+            ref={scrollContainerRef}
+            className="flex gap-6 overflow-x-auto scroll-smooth pb-4 px-12 scrollbar-hide"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
+            {testimonials.map((testimonial, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: 50 }}
+                animate={isVisible ? { opacity: 1, x: 0 } : {}}
+                transition={{ delay: index * 0.1, duration: 0.5 }}
+                className="group relative bg-white rounded-xl border-2 border-gray-100 hover:border-[#e1292c] transition-all duration-300 overflow-hidden shadow-lg hover:shadow-2xl flex-shrink-0 w-[400px]"
+                whileHover={{ y: -5 }}
+              >
+                {/* Top red accent bar */}
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#e1292c] to-[#313130] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+
+                {/* Quote icon background */}
+                <div className="absolute top-6 right-6 text-[#e1292c]/10 group-hover:text-[#e1292c]/20 transition-colors duration-300">
+                  <svg className="w-12 h-12" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                  </svg>
                 </div>
 
-                {/* Testimonial Content */}
-                <p className="text-[#313130]/80 mb-6 leading-relaxed italic relative">
-                  &quot;{testimonial.content}&quot;
-                </p>
+                <div className="p-6 relative z-10">
+                  {/* Star Rating */}
+                  <div className="flex items-center mb-4">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <svg
+                        key={i}
+                        className="w-5 h-5 text-[#e1292c]"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                    ))}
+                  </div>
 
-                {/* Client Info */}
-                <div className="flex items-center pt-4 border-t-2 border-gray-100 group-hover:border-[#e1292c]/20 transition-colors duration-300">
-                  <div className="relative">
-                    <motion.div
-                      whileHover={{ scale: 1.1, rotate: 5 }}
-                      className="relative"
-                    >
+                  {/* Testimonial Content */}
+                  <p className="text-[#313130]/80 mb-6 leading-relaxed italic relative text-sm">
+                    &quot;{testimonial.content}&quot;
+                  </p>
+
+                  {/* Client Info */}
+                  <div className="flex items-center pt-4 border-t-2 border-gray-100 group-hover:border-[#e1292c]/20 transition-colors duration-300">
+                    <div className="relative">
                       <Image
                         src={testimonial.image}
                         alt={testimonial.name}
-                        width={48}
-                        height={48}
-                        className="w-12 h-12 rounded-full object-cover border-2 border-[#e1292c]/20 group-hover:border-[#e1292c] transition-colors duration-300"
+                        width={40}
+                        height={40}
+                        className="w-10 h-10 rounded-full object-cover border-2 border-[#e1292c]/20 group-hover:border-[#e1292c] transition-colors duration-300"
                       />
                       {/* Verified badge */}
-                      <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-[#e1292c] rounded-full flex items-center justify-center border-2 border-white">
-                        <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-[#e1292c] rounded-full flex items-center justify-center border-2 border-white">
+                        <svg className="w-2.5 h-2.5 text-white" fill="currentColor" viewBox="0 0 20 20">
                           <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                         </svg>
                       </div>
-                    </motion.div>
-                  </div>
-                  <div className="ml-4">
-                    <h4 className="font-bold text-[#313130] group-hover:text-[#e1292c] transition-colors duration-300">
-                      {testimonial.name}
-                    </h4>
-                    <p className="text-sm text-[#313130]/60">{testimonial.role}</p>
+                    </div>
+                    <div className="ml-3">
+                      <h4 className="font-bold text-[#313130] group-hover:text-[#e1292c] transition-colors duration-300 text-sm">
+                        {testimonial.name}
+                      </h4>
+                      <p className="text-xs text-[#313130]/60">{testimonial.role}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              {/* Corner decoration */}
-              <div className="absolute bottom-0 right-0 w-20 h-20 border-r-4 border-b-4 border-[#e1292c]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-br-xl"></div>
-            </motion.div>
-          ))}
-        </motion.div>
+                {/* Corner decoration */}
+                <div className="absolute bottom-0 right-0 w-16 h-16 border-r-4 border-b-4 border-[#e1292c]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-br-xl"></div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
 
         {/* Bottom CTA Section */}
         <motion.div
-          className="mt-16 text-center"
+          className="mt-12 text-center"
           initial={{ opacity: 0, y: 20 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.8, duration: 0.6 }}
@@ -187,6 +228,12 @@ export default function Testimonials() {
           </div>
         </motion.div>
       </div>
+
+      <style jsx>{`
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+      `}</style>
     </section>
   );
 }

@@ -36,7 +36,7 @@ module.exports = {
         },
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-source-sans)', 'sans-serif'],
         display: ['Poppins', 'system-ui', 'sans-serif'],
       },
       animation: {

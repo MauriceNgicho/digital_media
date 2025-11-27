@@ -10,12 +10,12 @@ export default function BusinessesWorkedWith() {
   const businesses = [
     { 
       name: 'Br8ke The Silence', 
-      logo: '/logos/br8ke.png',
+      logo: '/logos/B8TS Logo.png',
       alt: 'Br8ke The Silence Logo'
     },
     { 
       name: 'Shisha Eclips', 
-      logo: '/logos/shisha.png',
+      logo: '/logos/Shisha Eclipse.png',
       alt: 'Shisha Eclips Logo'
     },
     { 
@@ -24,38 +24,33 @@ export default function BusinessesWorkedWith() {
       alt: 'Ascencia Living Logo'
     },
     { 
-      name: 'Personal Brands', 
-      logo: '/logos/asencia.png',
-      alt: 'Personal Brands Logo'
-    },
-    { 
       name: 'Learn Physics', 
-      logo: '/logos/learnphyc.png',
+      logo: '/logos/Learn Science.png',
       alt: 'Learn Physics Logo'
     },
     { 
       name: 'NCBI', 
-      logo: '/logos/ncbi.png',
+      logo: '/logos/NCBI Logo.png',
       alt: 'NCBI Logo'
     },
     { 
       name: 'Coaching Bow', 
-      logo: '/logos/coachingbow.png',
+      logo: '/logos/Coaching Bow Logo.png',
       alt: 'Coaching Bow Logo'
     },
     { 
       name: 'Kings Venture Group', 
-      logo: '/logos/kvg.jpeg',
+      logo: '/logos/KVG Logo.png',
       alt: 'Kings Venture Group Logo'
     },
     { 
       name: "Agatha's Space CIC", 
-      logo: '/logos/agatha.jpeg',
+      logo: '/logos/Agathas Space CIC Logo.png',
       alt: 'Agathas Space CIC Logo'
     },
     { 
       name: 'Oshun Ocean Sanctuary', 
-      logo: '/logos/oshun.jpeg',
+      logo: '/logos/Oshun Ocean Sanctuary.png',
       alt: 'Oshun Ocean Sanctuary Logo'
     },
   ];

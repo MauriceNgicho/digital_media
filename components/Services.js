@@ -1,12 +1,12 @@
 'use client';
-
 import { motion } from 'framer-motion';
 import useScrollAnimation from '@/hooks/useScrollAnimation';
 import Process from './Process';
+import Script from 'next/script';
 
 export default function Services() {
   const [ref, isVisible] = useScrollAnimation(0.1);
-
+  
   const services = [
     {
       icon: (
@@ -64,6 +64,32 @@ export default function Services() {
     },
   ];
 
+  // Service Schema for SEO
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": services.map((service, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "Service",
+        "@id": `https://sawava.com/#service-${index + 1}`,
+        "name": service.title,
+        "description": service.description,
+        "provider": {
+          "@type": "Organization",
+          "@id": "https://sawava.com/#organization",
+          "name": "Sawava"
+        },
+        "areaServed": {
+          "@type": "Country",
+          "name": "Kenya"
+        },
+        "serviceType": "Virtual Assistant Services"
+      }
+    }))
+  };
+
   const container = {
     hidden: { opacity: 0 },
     visible: {
@@ -84,103 +110,113 @@ export default function Services() {
   };
 
   return (
-    <section id="services" className="py-20 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden" ref={ref}>
-      {/* Background decorative elements */}
-      <div className="absolute top-20 right-0 w-96 h-96 bg-[#e1292c]/5 rounded-full filter blur-3xl"></div>
-      <div className="absolute bottom-40 left-0 w-80 h-80 bg-[#313130]/5 rounded-full filter blur-3xl"></div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          animate={isVisible ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-        >
-          {/* Section Label */}
-          <div className="flex items-center justify-center gap-3 mb-6">
-            <div className="w-12 h-0.5 bg-[#e1292c]"></div>
-            <span className="text-[#e1292c] font-semibold tracking-wider uppercase text-sm">What We Offer</span>
-            <div className="w-12 h-0.5 bg-[#e1292c]"></div>
-          </div>
-
-          <h2 className="text-4xl md:text-5xl font-display font-bold text-[#313130] mb-6">
-            Our Services
-          </h2>
-          <p className="text-xl text-[#313130]/70 max-w-3xl mx-auto leading-relaxed">
-            We offer six core Service Modules designed to manage all the back-end and front-facing operations of a modern business.
-          </p>
-        </motion.div>
-
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-          variants={container}
-          initial="hidden"
-          animate={isVisible ? 'visible' : 'hidden'}
-        >
-          {services.map((service, index) => (
-            <motion.div
-              key={index}
-              variants={item}
-              className="group relative bg-white p-8 rounded-xl border-2 border-gray-100 hover:border-[#e1292c] transition-all duration-300 overflow-hidden"
-              whileHover={{ y: -8, transition: { duration: 0.3 } }}
-            >
-              {/* Hover background effect */}
-              <div className="absolute inset-0 bg-gradient-to-br from-[#e1292c]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-
-              {/* Red accent bar */}
-              <div className="absolute top-0 left-0 w-full h-1 bg-[#e1292c] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
-
-              {/* Content */}
-              <div className="relative z-10">
-                {/* Icon Container */}
-                <motion.div
-                  className="inline-flex items-center justify-center w-16 h-16 bg-[#313130] rounded-lg mb-6 text-[#e1292c] group-hover:bg-[#e1292c] group-hover:text-white transition-all duration-300"
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                  transition={{ type: 'spring', stiffness: 300 }}
-                >
-                  {service.icon}
-                </motion.div>
-
-                <h3 className="text-xl font-display font-bold text-[#313130] mb-3 group-hover:text-[#e1292c] transition-colors duration-300">
-                  {service.title}
-                </h3>
-                <p className="text-[#313130]/70 leading-relaxed">
-                  {service.description}
-                </p>
-              </div>
-
-              {/* Corner decoration */}
-              <div className="absolute bottom-0 right-0 w-20 h-20 border-r-4 border-b-4 border-[#e1292c]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-br-xl"></div>
-
-              {/* Number badge */}
-              <div className="absolute top-4 right-4 w-8 h-8 bg-[#313130]/5 rounded-full flex items-center justify-center text-[#313130] font-bold text-sm group-hover:bg-[#e1292c] group-hover:text-white transition-all duration-300">
-                {index + 1}
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        {/* Bottom CTA Section */}
-        <motion.div
-          className="mt-16 text-center"
-          initial={{ opacity: 0, y: 20 }}
-          animate={isVisible ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.8, duration: 0.6 }}
-        >
-          <div className="inline-flex items-center gap-3 bg-white border-2 border-[#e1292c]/20 rounded-full px-8 py-4 shadow-lg">
-            <div className="w-3 h-3 bg-[#e1292c] rounded-full animate-pulse"></div>
-            <p className="text-[#313130] font-semibold">
-              Need a custom solution? 
-              <a href="#contact" className="text-[#e1292c] ml-2 hover:underline">
-                Let&apos;s talk
-              </a>
-            </p>
-          </div>
-        </motion.div>
-      </div>
+    <>
+      {/* Service Schema */}
+      <Script
+        id="service-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+        strategy="afterInteractive"
+      />
       
-      {/* Process Section */}
-      <Process />
-    </section>
+      <section id="services" className="py-20 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden" ref={ref}>
+        {/* Background decorative elements */}
+        <div className="absolute top-20 right-0 w-96 h-96 bg-[#e1292c]/5 rounded-full filter blur-3xl"></div>
+        <div className="absolute bottom-40 left-0 w-80 h-80 bg-[#313130]/5 rounded-full filter blur-3xl"></div>
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <motion.div
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isVisible ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
+          >
+            {/* Section Label */}
+            <div className="flex items-center justify-center gap-3 mb-6">
+              <div className="w-12 h-0.5 bg-[#e1292c]"></div>
+              <span className="text-[#e1292c] font-semibold tracking-wider uppercase text-sm">What We Offer</span>
+              <div className="w-12 h-0.5 bg-[#e1292c]"></div>
+            </div>
+            
+            <h2 className="text-4xl md:text-5xl font-display font-bold text-[#313130] mb-6">
+              Our Services
+            </h2>
+            <p className="text-xl text-[#313130]/70 max-w-3xl mx-auto leading-relaxed">
+              We offer six core Service Modules designed to manage all the back-end and front-facing operations of a modern business.
+            </p>
+          </motion.div>
+
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+            variants={container}
+            initial="hidden"
+            animate={isVisible ? 'visible' : 'hidden'}
+          >
+            {services.map((service, index) => (
+              <motion.div
+                key={index}
+                variants={item}
+                className="group relative bg-white p-8 rounded-xl border-2 border-gray-100 hover:border-[#e1292c] transition-all duration-300 overflow-hidden"
+                whileHover={{ y: -8, transition: { duration: 0.3 } }}
+              >
+                {/* Hover background effect */}
+                <div className="absolute inset-0 bg-gradient-to-br from-[#e1292c]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                
+                {/* Red accent bar */}
+                <div className="absolute top-0 left-0 w-full h-1 bg-[#e1292c] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                
+                {/* Content */}
+                <div className="relative z-10">
+                  {/* Icon Container */}
+                  <motion.div
+                    className="inline-flex items-center justify-center w-16 h-16 bg-[#313130] rounded-lg mb-6 text-[#e1292c] group-hover:bg-[#e1292c] group-hover:text-white transition-all duration-300"
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    transition={{ type: 'spring', stiffness: 300 }}
+                  >
+                    {service.icon}
+                  </motion.div>
+                  
+                  <h3 className="text-xl font-display font-bold text-[#313130] mb-3 group-hover:text-[#e1292c] transition-colors duration-300">
+                    {service.title}
+                  </h3>
+                  <p className="text-[#313130]/70 leading-relaxed">
+                    {service.description}
+                  </p>
+                </div>
+                
+                {/* Corner decoration */}
+                <div className="absolute bottom-0 right-0 w-20 h-20 border-r-4 border-b-4 border-[#e1292c]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-br-xl"></div>
+                
+                {/* Number badge */}
+                <div className="absolute top-4 right-4 w-8 h-8 bg-[#313130]/5 rounded-full flex items-center justify-center text-[#313130] font-bold text-sm group-hover:bg-[#e1292c] group-hover:text-white transition-all duration-300">
+                  {index + 1}
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          {/* Bottom CTA Section */}
+          <motion.div
+            className="mt-16 text-center"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isVisible ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.8, duration: 0.6 }}
+          >
+            <div className="inline-flex items-center gap-3 bg-white border-2 border-[#e1292c]/20 rounded-full px-8 py-4 shadow-lg">
+              <div className="w-3 h-3 bg-[#e1292c] rounded-full animate-pulse"></div>
+              <p className="text-[#313130] font-semibold">
+                Need a custom solution? 
+                <a href="#contact" className="text-[#e1292c] ml-2 hover:underline">
+                  Let&apos;s talk
+                </a>
+              </p>
+            </div>
+          </motion.div>
+        </div>
+        
+        {/* Process Section */}
+        <Process />
+      </section>
+    </>
   );
 }

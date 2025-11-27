@@ -9,32 +9,32 @@ export default function TeamAndDifferentiation() {
 
   const teamMembers = [
     {
-      name: 'Herbert',
-      role: 'Lead Virtual Assistant & Operations Manager',
-      description: 'With 8+ years in business operations, Sarah specializes in streamlining workflows and managing complex administrative tasks. She leads our team with expertise in project management and client relations.',
-      image: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400&q=80',
-      expertise: ['Project Management', 'Client Relations', 'Operations']
+      name: 'Herbert Edukon',
+      role: 'Co-founder, Director',
+      description: 'Herbert is the operational backbone of Sawava, ensuring every client project runs smoothly and efficiently. He manages core administrative services, overseeing Admin Support - from invoicing and diary management to setting up the digital systems that keep client businesses organised. Herbert provides the systematic structure required for high-volume support.',
+      image: '/images/team/herbert.jpg',
+      expertise: ['Project Management', 'Workflow & Systems Management', 'Operations & Administration']
     },
     {
-      name: 'Simon',
-      role: 'Digital Marketing & Content Specialist',
-      description: 'Michael brings 6+ years of digital marketing experience, creating compelling content and managing social media campaigns that drive engagement and growth for our clients.',
-      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80',
-      expertise: ['Digital Marketing', 'Content Creation', 'Social Media']
+      name: 'Simon Kairu',
+      role: 'Co-founder, CTO',
+      description: 'As Chief Technology Officer, Simon oversees all technical strategy and delivery systems. He is the architect behind our future-proof digital infrastructure, focusing on Web Support (design, migration, and maintenance) and ensuring our Social Media Support tools are secure and high-performing. Simon builds the robust solutions that allow the team to deliver complex services reliably.',
+      image: '/images/team/simon.jpeg',
+      expertise: [ 'System Architecture/Design', 'Infrastructure Management', 'Tech Strategy & Leadership' ]
     },
     {
-      name: 'Kenjoe',
-      role: 'Financial & Strategic Admin Expert',
-      description: 'Emily excels in financial management and strategic planning, helping businesses optimize their processes and make data-driven decisions for sustainable growth.',
-      image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=80',
-      expertise: ['Financial Analysis', 'Strategic Planning', 'Data Management']
+      name: 'Ken joe Mwenda',
+      role: 'Lead Virtual Assistant',
+      description: "Ken Joe is our front-line specialist in digital content and social media. As the Lead Virtual Assistant, he translates your ideas into engaging online campaigns and is dedicated to managing your community, scheduling your posts, and ensuring your brand maintains an active, professional presence across all platforms.",
+      image: '/images/team/kenjoe.jpeg',
+      expertise: ['Social Media Management', 'Digital Content Creation', 'Marketing/Campaign Strategy']
     },
     {
-      name: 'Maurice',
-      role: 'Software Engineer',
-      description: 'With 3+ year in Software engineering, Maurice solves day to day problems in development.',
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80',
-      expertise: ['Web Development', 'SEO']
+      name: 'Maurice Ojwang',
+      role: 'Senior Developer',
+      description: "Maurice is the technical talent responsible for all things relating to website design, migration, and maintenance. Whether it's building a new site from scratch or ensuring your current one is running perfectly with weekly updates, Maurice provides the essential development skills that keep our clients' online platforms reliable and modern.",
+      image: '/images/team/maurice.jpg',
+      expertise: ['Web Design & Development', 'Website Maintenance & Migration', 'DevOps Support']
     }
   ];
 
@@ -88,7 +88,7 @@ export default function TeamAndDifferentiation() {
   };
 
   return (
-    <section className="py-20 bg-gradient-to-b from-white to-gray-50" ref={ref}>
+    <section id="team" className="py-20 bg-gradient-to-b from-white to-gray-50" ref={ref}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Our Team Section */}
@@ -132,7 +132,9 @@ export default function TeamAndDifferentiation() {
                   alt={member.name}
                   width={400}
                   height={288}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  // className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  className="w-full h-full object-cover object-top transition-opacity duration-700"
+                  style={{ objectPosition: '50% 30%' }}
                 />
                 {/* Red gradient overlay on hover */}
                 <div className="absolute inset-0 bg-gradient-to-t from-[#313130] via-[#313130]/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500" />

@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 export default function Hero() {
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center bg-white pt-20 overflow-hidden">
+    <section id="home" className="relative min-h-screen flex items-center justify-center bg-white pt-20 overflow-hidden">
       {/* Enhanced Gradient Overlay with Red Tint */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#ffffff] via-[#fef8f8] to-[#fef1f1]" />
 
@@ -65,29 +65,18 @@ export default function Hero() {
           </motion.p>
 
           <motion.div
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+            className="flex justify-center items-center"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.8 }}
           >
             <motion.a
               href="#contact"
-              className="bg-[#e1292c] text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-[#c32023] transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-[#e1292c]/20"
+              className="bg-[#e1292c] text-white px-10 py-4 rounded-full text-lg font-semibold hover:bg-[#c32023] transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-[#e1292c]/20"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
             >
               Schedule Consultation
-            </motion.a>
-
-            <motion.a
-              href="#portfolio"
-              className="border-2 border-[#313130] text-[#313130] px-8 py-4 rounded-full text-lg font-semibold hover:bg-[#313130] hover:text-white transition-all duration-300 relative overflow-hidden group"
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              {/* Subtle red accent on hover */}
-              <span className="absolute inset-0 bg-gradient-to-r from-[#e1292c]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <span className="relative">View Our Work</span>
             </motion.a>
           </motion.div>
         </motion.div>

@@ -1,37 +1,55 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Link from 'next/link';
+import Services from './Services';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   const footerLinks = {
-    Services: ['Executive/Admin Support', 'Finance & Strategic Admin', 'Web/Email Marketing & Events', 'Digital Content Creation', 'HR & Recruitment'],
-    Company: ['About Us', 'Our Team', 'Careers', 'Contact'],
-    Resources: ['Blog', 'Case Studies', 'FAQs', 'Support'],
-    Legal: ['Privacy Policy', 'Terms of Service', 'Cookie Policy'],
+    Services: [
+      { label: 'Executive/Admin Support', href: '#services' },
+      { label: 'Financial & Strategic Admin', href: '#services' },
+      { label: 'Digital Content Creation', href: '#services' },
+      { label: 'Social & Community Management', href: '#services' },
+      { label: 'Web/Email Marketing & Events', href: '#services' },
+    ],
+    company: [
+      { label: 'About Us', href: '#about' },
+      { label: 'Our Team', href: '#team' },
+      { label: 'Careers', href: '#' },
+      { label: 'Contact', href: '#contact' },
+      { label: 'FAQs', href: '#faq' },
+    ],
+    // Resources: [
+    //   { label: 'Blog', href: '#' },
+    //   // { label: 'Case Studies', href: '#' },
+    //   { label: 'FAQs', href: '#faq' },
+    //   { label: 'Support', href: '' },
+    // ],
+    // Legal: [
+    //   { label: 'Privacy Policy', href: '#' },
+    //   { label: 'Terms of Service', href: '#' },
+    //   { label: 'Cookie Policy', href: '#' },
+    // ],
   };
 
   const socialLinks = [
     { 
       name: 'Facebook', 
-      href: '#',
+      href: 'https://www.facebook.com/sawava.ke',
       icon: 'M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z' 
     },
     { 
-      name: 'Twitter', 
-      href: '#',
-      icon: 'M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z' 
+      name: 'TikTok', 
+      href: 'https://www.tiktok.com/@savawa.ke/',
+      icon: 'M21 7.9c-1.4 0-2.8.2-4.1.7v5.2c0 3.8-3.1 7-7 7s-7-3.1-7-7 3.1-7 7-7c.1 0 .3 0 .4 0v3c-.1 0-.3 0-.4 0-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4v-7.2c1.3-.4 2.7-.6 4.1-.6 2.5 0 4.9 1 6.8 2.8v-3.7c-1.9-1.8-4.3-2.8-6.8-2.8z'
     },
     { 
       name: 'Instagram', 
-      href: '#',
+      href: 'https://www.instagram.com/sawava.ke/',
       icon: 'M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01' 
-    },
-    { 
-      name: 'LinkedIn', 
-      href: '#',
-      icon: 'M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z' 
     },
   ];
 
@@ -100,7 +118,7 @@ export default function Footer() {
               </div>
 
               {/* Newsletter Signup */}
-              <div>
+              {/* <div>
                 <p className="text-sm font-semibold text-white/90 mb-3 uppercase tracking-wider">Stay Updated</p>
                 <div className="flex gap-2">
                   <input
@@ -116,7 +134,7 @@ export default function Footer() {
                     Subscribe
                   </motion.button>
                 </div>
-              </div>
+              </div> */}
             </motion.div>
           </div>
 
@@ -136,17 +154,17 @@ export default function Footer() {
               <ul className="space-y-3">
                 {links.map((link) => (
                   <motion.li 
-                    key={link} 
+                    key={link.label} 
                     whileHover={{ x: 5 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <a
-                      href="#"
+                    <Link
+                      href={link.href}
                       className="text-white/60 hover:text-[#e1292c] transition-colors duration-300 text-sm flex items-center group"
                     >
                       <span className="w-0 h-px bg-[#e1292c] group-hover:w-3 transition-all duration-300 mr-0 group-hover:mr-2"></span>
-                      {link}
-                    </a>
+                      {link.label}
+                    </Link>
                   </motion.li>
                 ))}
               </ul>
@@ -163,15 +181,14 @@ export default function Footer() {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
             >
-              © {currentYear} Sawava. All rights reserved. Crafted with{' '}
-              <span className="text-[#e1292c]">❤</span> for your success.
+              © {currentYear} Sawava. All rights reserved.
             </motion.p>
             
             <div className="flex flex-wrap justify-center gap-6">
               {['Privacy Policy', 'Terms of Service', 'Sitemap'].map((item, index) => (
                 <motion.a
                   key={item}
-                  href="#"
+                  href="https://www.instagram.com/sawava.ke/"
                   className="text-white/60 hover:text-[#e1292c] text-sm transition-colors duration-300 relative group"
                   whileHover={{ y: -2 }}
                   initial={{ opacity: 0, y: 10 }}

@@ -5,10 +5,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 
 const navLinks = [
-  { name: 'Home', href: '#hero' },
+  { name: 'Home', href: '#home' },
   { name: 'About Us', href: '#about' },
   { name: 'Services', href: '#services' },
-  { name: 'Portfolio', href: '#portfolio' },
+  { name: 'Pricing', href: '#pricing' },
 ];
 
 export default function Navigation() {
@@ -103,7 +103,7 @@ export default function Navigation() {
               onClick={(e) => handleSmoothScroll(e, '#hero')}
             >
               <Image
-                src="/logos/sawava_T.png"
+                src="/logos/sawavalogo.png"
                 alt="Sawava Logo"
                 width={140}
                 height={45}
