@@ -1,5 +1,4 @@
 'use client';
-
 import { useRef } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
@@ -64,7 +63,7 @@ export default function Testimonials() {
   const scroll = (direction) => {
     const container = scrollContainerRef.current;
     if (container) {
-      const scrollAmount = 424; // Card width (400px) + gap (24px)
+      const scrollAmount = window.innerWidth < 640 ? 320 : 424; // Responsive scroll amount
       container.scrollBy({
         left: direction === 'left' ? -scrollAmount : scrollAmount,
         behavior: 'smooth'
@@ -73,53 +72,60 @@ export default function Testimonials() {
   };
 
   return (
-    <section id="testimonials" className="py-20 bg-white relative overflow-hidden" ref={ref}>
+    <section 
+      id="testimonials" 
+      className="py-12 sm:py-16 md:py-20 bg-white relative overflow-hidden" 
+      ref={ref}
+    >
       {/* Background decorative elements */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-[#e1292c]/5 rounded-full filter blur-3xl"></div>
-      <div className="absolute bottom-0 right-0 w-80 h-80 bg-[#313130]/5 rounded-full filter blur-3xl"></div>
+      <div className="absolute top-0 left-0 w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 bg-[#e1292c]/5 rounded-full filter blur-3xl"></div>
+      <div className="absolute bottom-0 right-0 w-56 h-56 sm:w-72 sm:h-72 lg:w-80 lg:h-80 bg-[#313130]/5 rounded-full filter blur-3xl"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
-          className="text-center mb-12"
+          className="text-center mb-10 sm:mb-12"
           initial={{ opacity: 0, y: 20 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
           {/* Section Label */}
-          <div className="flex items-center justify-center gap-3 mb-6">
-            <div className="w-12 h-0.5 bg-[#e1292c]"></div>
-            <span className="text-[#e1292c] font-semibold tracking-wider uppercase text-sm">What Clients Say</span>
-            <div className="w-12 h-0.5 bg-[#e1292c]"></div>
+          <div className="flex items-center justify-center gap-2 sm:gap-3 mb-4 sm:mb-6">
+            <div className="w-8 sm:w-10 md:w-12 h-0.5 bg-[#e1292c]"></div>
+            <span className="text-[#e1292c] font-semibold tracking-wider uppercase text-xs sm:text-sm">
+              What Clients Say
+            </span>
+            <div className="w-8 sm:w-10 md:w-12 h-0.5 bg-[#e1292c]"></div>
           </div>
 
-          <h2 className="text-4xl md:text-5xl font-display font-bold text-[#313130] mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-[#313130] mb-4 sm:mb-6 px-4">
             Client Testimonials
           </h2>
-          <p className="text-xl text-[#313130]/70 max-w-3xl mx-auto leading-relaxed">
+
+          <p className="text-base sm:text-lg md:text-xl text-[#313130]/70 max-w-3xl mx-auto leading-relaxed px-4">
             Don&apos;t just take our word for it. Hear what our clients have to say about their experience working with us.
           </p>
         </motion.div>
 
         {/* Scrolling Container */}
         <div className="relative">
-          {/* Left Navigation Button */}
+          {/* Left Navigation Button - Hidden on mobile */}
           <button
             onClick={() => scroll('left')}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-[#e1292c] text-[#313130] hover:text-white w-12 h-12 rounded-full shadow-xl flex items-center justify-center transition-all duration-300 border-2 border-[#e1292c]/20 hover:border-[#e1292c]"
+            className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-[#e1292c] text-[#313130] hover:text-white w-10 h-10 lg:w-12 lg:h-12 rounded-full shadow-xl items-center justify-center transition-all duration-300 border-2 border-[#e1292c]/20 hover:border-[#e1292c]"
             aria-label="Scroll left"
           >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-5 h-5 lg:w-6 lg:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
           </button>
 
-          {/* Right Navigation Button */}
+          {/* Right Navigation Button - Hidden on mobile */}
           <button
             onClick={() => scroll('right')}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-[#e1292c] text-[#313130] hover:text-white w-12 h-12 rounded-full shadow-xl flex items-center justify-center transition-all duration-300 border-2 border-[#e1292c]/20 hover:border-[#e1292c]"
+            className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-[#e1292c] text-[#313130] hover:text-white w-10 h-10 lg:w-12 lg:h-12 rounded-full shadow-xl items-center justify-center transition-all duration-300 border-2 border-[#e1292c]/20 hover:border-[#e1292c]"
             aria-label="Scroll right"
           >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-5 h-5 lg:w-6 lg:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </button>
@@ -127,7 +133,7 @@ export default function Testimonials() {
           {/* Testimonials Scroll Container */}
           <div
             ref={scrollContainerRef}
-            className="flex gap-6 overflow-x-auto scroll-smooth pb-4 px-12 scrollbar-hide"
+            className="flex gap-4 sm:gap-6 overflow-x-auto scroll-smooth pb-4 px-4 md:px-12 scrollbar-hide snap-x snap-mandatory"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             {testimonials.map((testimonial, index) => (
@@ -136,26 +142,26 @@ export default function Testimonials() {
                 initial={{ opacity: 0, x: 50 }}
                 animate={isVisible ? { opacity: 1, x: 0 } : {}}
                 transition={{ delay: index * 0.1, duration: 0.5 }}
-                className="group relative bg-white rounded-xl border-2 border-gray-100 hover:border-[#e1292c] transition-all duration-300 overflow-hidden shadow-lg hover:shadow-2xl flex-shrink-0 w-[400px]"
+                className="group relative bg-white rounded-xl border-2 border-gray-100 hover:border-[#e1292c] transition-all duration-300 overflow-hidden shadow-lg hover:shadow-2xl flex-shrink-0 w-[280px] sm:w-[340px] md:w-[380px] lg:w-[400px] snap-center"
                 whileHover={{ y: -5 }}
               >
                 {/* Top red accent bar */}
                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#e1292c] to-[#313130] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
 
                 {/* Quote icon background */}
-                <div className="absolute top-6 right-6 text-[#e1292c]/10 group-hover:text-[#e1292c]/20 transition-colors duration-300">
-                  <svg className="w-12 h-12" fill="currentColor" viewBox="0 0 24 24">
+                <div className="absolute top-4 right-4 sm:top-6 sm:right-6 text-[#e1292c]/10 group-hover:text-[#e1292c]/20 transition-colors duration-300">
+                  <svg className="w-10 h-10 sm:w-12 sm:h-12" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
                   </svg>
                 </div>
 
-                <div className="p-6 relative z-10">
+                <div className="p-5 sm:p-6 relative z-10">
                   {/* Star Rating */}
-                  <div className="flex items-center mb-4">
+                  <div className="flex items-center mb-3 sm:mb-4">
                     {[...Array(testimonial.rating)].map((_, i) => (
                       <svg
                         key={i}
-                        className="w-5 h-5 text-[#e1292c]"
+                        className="w-4 h-4 sm:w-5 sm:h-5 text-[#e1292c]"
                         fill="currentColor"
                         viewBox="0 0 20 20"
                       >
@@ -165,61 +171,77 @@ export default function Testimonials() {
                   </div>
 
                   {/* Testimonial Content */}
-                  <p className="text-[#313130]/80 mb-6 leading-relaxed italic relative text-sm">
+                  <p className="text-[#313130]/80 mb-5 sm:mb-6 leading-relaxed italic relative text-xs sm:text-sm">
                     &quot;{testimonial.content}&quot;
                   </p>
 
                   {/* Client Info */}
-                  <div className="flex items-center pt-4 border-t-2 border-gray-100 group-hover:border-[#e1292c]/20 transition-colors duration-300">
-                    <div className="relative">
+                  <div className="flex items-center pt-3 sm:pt-4 border-t-2 border-gray-100 group-hover:border-[#e1292c]/20 transition-colors duration-300">
+                    <div className="relative flex-shrink-0">
                       <Image
                         src={testimonial.image}
                         alt={testimonial.name}
                         width={40}
                         height={40}
-                        className="w-10 h-10 rounded-full object-cover border-2 border-[#e1292c]/20 group-hover:border-[#e1292c] transition-colors duration-300"
+                        className="w-9 h-9 sm:w-10 sm:h-10 rounded-full object-cover border-2 border-[#e1292c]/20 group-hover:border-[#e1292c] transition-colors duration-300"
                       />
                       {/* Verified badge */}
-                      <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-[#e1292c] rounded-full flex items-center justify-center border-2 border-white">
-                        <svg className="w-2.5 h-2.5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <div className="absolute -bottom-1 -right-1 w-3.5 h-3.5 sm:w-4 sm:h-4 bg-[#e1292c] rounded-full flex items-center justify-center border-2 border-white">
+                        <svg className="w-2 h-2 sm:w-2.5 sm:h-2.5 text-white" fill="currentColor" viewBox="0 0 20 20">
                           <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                         </svg>
                       </div>
                     </div>
-                    <div className="ml-3">
-                      <h4 className="font-bold text-[#313130] group-hover:text-[#e1292c] transition-colors duration-300 text-sm">
+                    <div className="ml-3 min-w-0">
+                      <h4 className="font-bold text-[#313130] group-hover:text-[#e1292c] transition-colors duration-300 text-xs sm:text-sm truncate">
                         {testimonial.name}
                       </h4>
-                      <p className="text-xs text-[#313130]/60">{testimonial.role}</p>
+                      <p className="text-[10px] sm:text-xs text-[#313130]/60 truncate">
+                        {testimonial.role}
+                      </p>
                     </div>
                   </div>
                 </div>
 
                 {/* Corner decoration */}
-                <div className="absolute bottom-0 right-0 w-16 h-16 border-r-4 border-b-4 border-[#e1292c]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-br-xl"></div>
+                <div className="absolute bottom-0 right-0 w-12 h-12 sm:w-16 sm:h-16 border-r-4 border-b-4 border-[#e1292c]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-br-xl"></div>
               </motion.div>
             ))}
+          </div>
+
+          {/* Mobile scroll indicator */}
+          <div className="md:hidden flex justify-center mt-4 gap-2">
+            <div className="text-xs text-[#313130]/50 flex items-center gap-1">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16l-4-4m0 0l4-4m-4 4h18" />
+              </svg>
+              <span>Swipe to see more</span>
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </div>
           </div>
         </div>
 
         {/* Bottom CTA Section */}
         <motion.div
-          className="mt-12 text-center"
+          className="mt-10 sm:mt-12 text-center px-4"
           initial={{ opacity: 0, y: 20 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.8, duration: 0.6 }}
         >
-          <div className="inline-flex flex-col sm:flex-row items-center gap-4 bg-gradient-to-r from-[#313130] to-[#313130]/95 rounded-2xl px-8 py-6 shadow-xl relative overflow-hidden">
+          <div className="inline-flex flex-col sm:flex-row items-center gap-4 sm:gap-6 bg-gradient-to-r from-[#313130] to-[#313130]/95 rounded-2xl px-6 sm:px-8 py-5 sm:py-6 shadow-xl relative overflow-hidden max-w-full">
             {/* Decorative glow */}
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-[#e1292c]/10 rounded-full filter blur-3xl"></div>
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 sm:w-48 sm:h-48 bg-[#e1292c]/10 rounded-full filter blur-3xl"></div>
 
             <div className="text-white text-center sm:text-left relative z-10">
-              <p className="font-bold text-lg mb-1">Ready to Join Our Success Stories?</p>
-              <p className="text-white/70 text-sm">Let&apos;s create something amazing together</p>
+              <p className="font-bold text-base sm:text-lg mb-1">Ready to Join Our Success Stories?</p>
+              <p className="text-white/70 text-xs sm:text-sm">Let&apos;s create something amazing together</p>
             </div>
+
             <motion.a
               href="#contact"
-              className="bg-[#e1292c] text-white px-8 py-3 rounded-full font-semibold hover:bg-[#c32023] transition-colors shadow-lg whitespace-nowrap relative z-10"
+              className="bg-[#e1292c] text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-semibold hover:bg-[#c32023] transition-colors shadow-lg whitespace-nowrap relative z-10 text-sm sm:text-base"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
