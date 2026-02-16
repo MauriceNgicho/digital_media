@@ -1,5 +1,4 @@
 'use client';
-
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import useScrollAnimation from '@/hooks/useScrollAnimation';
@@ -20,7 +19,7 @@ export default function TeamAndDifferentiation() {
       role: 'Co-founder, CTO',
       description: 'As Chief Technology Officer, Simon oversees all technical strategy and delivery systems. He is the architect behind our future-proof digital infrastructure, focusing on Web Support (design, migration, and maintenance) and ensuring our Social Media Support tools are secure and high-performing. Simon builds the robust solutions that allow the team to deliver complex services reliably.',
       image: '/images/team/simon.jpeg',
-      expertise: [ 'System Architecture/Design', 'Infrastructure Management', 'Tech Strategy & Leadership' ]
+      expertise: ['System Architecture/Design', 'Infrastructure Management', 'Tech Strategy & Leadership']
     },
     {
       name: 'Ken Joe Mwenda',
@@ -41,7 +40,7 @@ export default function TeamAndDifferentiation() {
   const differentiators = [
     {
       icon: (
-        <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="w-10 h-10 sm:w-12 sm:h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
         </svg>
       ),
@@ -50,7 +49,7 @@ export default function TeamAndDifferentiation() {
     },
     {
       icon: (
-        <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="w-10 h-10 sm:w-12 sm:h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
         </svg>
       ),
@@ -59,7 +58,7 @@ export default function TeamAndDifferentiation() {
     },
     {
       icon: (
-        <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="w-10 h-10 sm:w-12 sm:h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
       ),
@@ -88,34 +87,41 @@ export default function TeamAndDifferentiation() {
   };
 
   return (
-    <section id="team" className="py-20 bg-gradient-to-b from-white to-gray-50" ref={ref}>
+    <section 
+      id="team" 
+      className="py-12 sm:py-16 md:py-20 bg-gradient-to-b from-white to-gray-50" 
+      ref={ref}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Our Team Section */}
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-12 sm:mb-14 md:mb-16"
           initial={{ opacity: 0, y: 20 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
           {/* Section Label */}
-          <div className="flex items-center justify-center gap-3 mb-6">
-            <div className="w-12 h-0.5 bg-[#e1292c]"></div>
-            <span className="text-[#e1292c] font-semibold tracking-wider uppercase text-sm">Meet The Team</span>
-            <div className="w-12 h-0.5 bg-[#e1292c]"></div>
+          <div className="flex items-center justify-center gap-2 sm:gap-3 mb-4 sm:mb-6">
+            <div className="w-8 sm:w-10 md:w-12 h-0.5 bg-[#e1292c]"></div>
+            <span className="text-[#e1292c] font-semibold tracking-wider uppercase text-xs sm:text-sm">
+              Meet The Team
+            </span>
+            <div className="w-8 sm:w-10 md:w-12 h-0.5 bg-[#e1292c]"></div>
           </div>
 
-          <h2 className="text-4xl md:text-5xl font-display font-bold text-[#313130] mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-[#313130] mb-4 sm:mb-6 px-4">
             Our Team
           </h2>
-          <p className="text-xl text-[#313130]/70 max-w-4xl mx-auto leading-relaxed">
+
+          <p className="text-base sm:text-lg md:text-xl text-[#313130]/70 max-w-4xl mx-auto leading-relaxed px-4">
             Our team is a group of skilled, professional Virtual Assistants dedicated to creating seamless operations that drive success. We are hand-picked for our reliability, attention to detail, and commitment to making our clients&apos; lives easier.
           </p>
         </motion.div>
 
         {/* Team Grid - 2x2 Layout */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-24 max-w-5xl mx-auto"
+          className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mb-16 sm:mb-20 md:mb-24 max-w-5xl mx-auto"
           variants={container}
           initial="hidden"
           animate={isVisible ? 'visible' : 'hidden'}
@@ -126,34 +132,37 @@ export default function TeamAndDifferentiation() {
               variants={item}
               className="bg-white rounded-lg overflow-hidden group hover:shadow-2xl transition-all duration-500 border-2 border-transparent hover:border-[#e1292c]/20"
             >
-              <div className="relative h-72 overflow-hidden">
+              <div className="relative h-64 sm:h-72 md:h-80 overflow-hidden">
                 <Image
                   src={member.image}
                   alt={member.name}
                   width={400}
-                  height={288}
+                  height={320}
                   className="w-full h-full object-cover object-top transition-opacity duration-700"
                   style={{ objectPosition: '50% 30%' }}
                 />
-                {/* Red gradient overlay on hover */}
+                {/* Gradient overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-[#313130] via-[#313130]/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
                 
                 {/* Name overlay on image */}
-                <div className="absolute bottom-0 left-0 right-0 p-6 text-white z-10">
-                  <h3 className="text-2xl font-display font-bold mb-1">
+                <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 text-white z-10">
+                  <h3 className="text-xl sm:text-2xl font-display font-bold mb-1">
                     {member.name}
                   </h3>
-                  <p className="text-[#e1292c] font-semibold text-sm">
+                  <p className="text-[#e1292c] font-semibold text-xs sm:text-sm">
                     {member.role}
                   </p>
                 </div>
 
                 {/* Red accent corner */}
-                <div className="absolute top-0 right-0 w-16 h-16 bg-[#e1292c] opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ clipPath: 'polygon(100% 0, 0 0, 100% 100%)' }}></div>
+                <div 
+                  className="absolute top-0 right-0 w-12 h-12 sm:w-16 sm:h-16 bg-[#e1292c] opacity-0 group-hover:opacity-100 transition-opacity duration-500" 
+                  style={{ clipPath: 'polygon(100% 0, 0 0, 100% 100%)' }}
+                ></div>
               </div>
               
-              <div className="p-6 border-t-4 border-[#e1292c]">
-                <p className="text-[#313130]/80 leading-relaxed mb-4 text-sm">
+              <div className="p-5 sm:p-6 border-t-4 border-[#e1292c]">
+                <p className="text-[#313130]/80 leading-relaxed mb-4 text-sm sm:text-base">
                   {member.description}
                 </p>
                 
@@ -161,7 +170,7 @@ export default function TeamAndDifferentiation() {
                   {member.expertise.map((skill, skillIndex) => (
                     <span
                       key={skillIndex}
-                      className="px-3 py-1 bg-[#313130] text-white text-xs rounded-full font-medium hover:bg-[#e1292c] transition-colors duration-300 cursor-default"
+                      className="px-2.5 py-1 sm:px-3 bg-[#313130] text-white text-xs rounded-full font-medium hover:bg-[#e1292c] transition-colors duration-300 cursor-default"
                     >
                       {skill}
                     </span>
@@ -173,12 +182,12 @@ export default function TeamAndDifferentiation() {
         </motion.div>
 
         {/* Divider */}
-        <div className="relative mb-20">
+        <div className="relative mb-14 sm:mb-16 md:mb-20">
           <div className="absolute inset-0 flex items-center">
             <div className="w-full border-t border-gray-200"></div>
           </div>
           <div className="relative flex justify-center">
-            <div className="bg-gradient-to-b from-white to-gray-50 px-8">
+            <div className="bg-gradient-to-b from-white to-gray-50 px-6 sm:px-8">
               <div className="w-3 h-3 bg-[#e1292c] rotate-45"></div>
             </div>
           </div>
@@ -186,28 +195,31 @@ export default function TeamAndDifferentiation() {
 
         {/* What Makes Us Different Section */}
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-12 sm:mb-14 md:mb-16"
           initial={{ opacity: 0, y: 20 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.4, duration: 0.6 }}
         >
           {/* Section Label */}
-          <div className="flex items-center justify-center gap-3 mb-6">
-            <div className="w-12 h-0.5 bg-[#e1292c]"></div>
-            <span className="text-[#e1292c] font-semibold tracking-wider uppercase text-sm">Why Choose Us</span>
-            <div className="w-12 h-0.5 bg-[#e1292c]"></div>
+          <div className="flex items-center justify-center gap-2 sm:gap-3 mb-4 sm:mb-6">
+            <div className="w-8 sm:w-10 md:w-12 h-0.5 bg-[#e1292c]"></div>
+            <span className="text-[#e1292c] font-semibold tracking-wider uppercase text-xs sm:text-sm">
+              Why Choose Us
+            </span>
+            <div className="w-8 sm:w-10 md:w-12 h-0.5 bg-[#e1292c]"></div>
           </div>
 
-          <h2 className="text-4xl md:text-5xl font-display font-bold text-[#313130] mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-[#313130] mb-4 sm:mb-6 px-4">
             What Makes Us Different
           </h2>
-          <p className="text-xl text-[#313130]/70 max-w-4xl mx-auto leading-relaxed">
+
+          <p className="text-base sm:text-lg md:text-xl text-[#313130]/70 max-w-4xl mx-auto leading-relaxed px-4">
             We offer more than just a remote worker; we offer a strategic partnership. Here&apos;s how we stand out from the rest.
           </p>
         </motion.div>
 
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8"
           variants={container}
           initial="hidden"
           animate={isVisible ? 'visible' : 'hidden'}
@@ -216,60 +228,63 @@ export default function TeamAndDifferentiation() {
             <motion.div
               key={index}
               variants={item}
-              className="relative bg-white p-8 rounded-lg border-2 border-gray-100 hover:border-[#e1292c] transition-all duration-300 text-center group overflow-hidden"
+              className="relative bg-white p-6 sm:p-8 rounded-lg border-2 border-gray-100 hover:border-[#e1292c] transition-all duration-300 text-center group overflow-hidden"
               whileHover={{ y: -8, transition: { duration: 0.3 } }}
             >
               {/* Background accent */}
               <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-[#e1292c] to-[#313130] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
 
               <motion.div
-                className="text-[#e1292c] mb-6 inline-block"
+                className="text-[#e1292c] mb-4 sm:mb-6 inline-block"
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 transition={{ type: 'spring', stiffness: 300 }}
               >
                 {diff.icon}
               </motion.div>
 
-              <h3 className="text-xl font-display font-bold text-[#313130] mb-4">
+              <h3 className="text-lg sm:text-xl font-display font-bold text-[#313130] mb-3 sm:mb-4">
                 {diff.title}
               </h3>
-              <p className="text-[#313130]/70 leading-relaxed">
+
+              <p className="text-sm sm:text-base text-[#313130]/70 leading-relaxed">
                 {diff.description}
               </p>
 
               {/* Corner decoration */}
-              <div className="absolute bottom-0 right-0 w-12 h-12 border-r-4 border-b-4 border-[#e1292c]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute bottom-0 right-0 w-10 h-10 sm:w-12 sm:h-12 border-r-4 border-b-4 border-[#e1292c]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </motion.div>
           ))}
         </motion.div>
 
         {/* Call to Action */}
         <motion.div
-          className="text-center mt-20"
+          className="text-center mt-14 sm:mt-16 md:mt-20"
           initial={{ opacity: 0, y: 20 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.8, duration: 0.6 }}
         >
-          <div className="relative bg-[#313130] rounded-2xl p-12 overflow-hidden">
+          <div className="relative bg-[#313130] rounded-2xl p-8 sm:p-10 md:p-12 overflow-hidden">
             {/* Decorative elements */}
-            <div className="absolute top-0 left-0 w-40 h-40 bg-[#e1292c]/10 rounded-full filter blur-3xl"></div>
-            <div className="absolute bottom-0 right-0 w-40 h-40 bg-[#e1292c]/10 rounded-full filter blur-3xl"></div>
+            <div className="absolute top-0 left-0 w-32 h-32 sm:w-40 sm:h-40 bg-[#e1292c]/10 rounded-full filter blur-3xl"></div>
+            <div className="absolute bottom-0 right-0 w-32 h-32 sm:w-40 sm:h-40 bg-[#e1292c]/10 rounded-full filter blur-3xl"></div>
 
             <div className="relative z-10">
-              <h3 className="text-3xl md:text-4xl font-display font-bold text-white mb-4">
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-display font-bold text-white mb-3 sm:mb-4 px-4">
                 Ready to Experience the Difference?
               </h3>
-              <p className="text-white/80 text-lg mb-8 max-w-2xl mx-auto">
+
+              <p className="text-white/80 text-base sm:text-lg mb-6 sm:mb-8 max-w-2xl mx-auto px-4">
                 Join hundreds of businesses that have transformed their operations with Sawava&apos;s expert virtual assistant services.
               </p>
+
               <motion.a
                 href="#contact"
-                className="inline-flex items-center bg-[#e1292c] text-white px-10 py-4 rounded-full text-lg font-semibold hover:bg-[#c32023] transition-all duration-300 shadow-xl hover:shadow-2xl hover:shadow-[#e1292c]/30"
+                className="inline-flex items-center justify-center bg-[#e1292c] text-white px-8 sm:px-10 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-[#c32023] transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-[#e1292c]/20"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
-                Get Started Today
-                <svg className="ml-3 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <span>Get Started Today</span>
+                <svg className="ml-2 sm:ml-3 w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </motion.a>
