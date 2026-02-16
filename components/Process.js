@@ -199,7 +199,10 @@ export default function Process() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                 <motion.a
                   href="#contact"
-                  className="inline-flex items-center bg-[#e1292c] text-white px-10 py-4 rounded-full text-lg font-semibold hover:bg-[#c32023] transition-all duration-300 shadow-xl hover:shadow-2xl hover:shadow-[#e1292c]/30"
+                  // className="inline-flex items-center bg-[#e1292c] text-white px-10 py-4 rounded-full text-lg font-semibold hover:bg-[#c32023] transition-all duration-300 shadow-xl hover:shadow-2xl hover:shadow-[#e1292c]/30"
+                  // whileHover={{ scale: 1.05, y: -2 }}
+                  // whileTap={{ scale: 0.95 }}
+                  className="bg-[#e1292c] text-white px-10 py-4 rounded-full text-lg font-semibold hover:bg-[#c32023] transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-[#e1292c]/20"
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                 >
