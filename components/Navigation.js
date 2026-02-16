@@ -1,11 +1,11 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 
 const navLinks = [
-  { name: 'Home', href: '#hero' },
+  { name: 'Home', href: '#home' },
   { name: 'About Us', href: '#about' },
   { name: 'Services', href: '#services' },
   { name: 'Pricing', href: '#pricing' },
@@ -16,25 +16,37 @@ export default function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
 
-  // Detect scroll position
+  // Throttle function for performance
+  const throttle = (func, delay) => {
+    let lastCall = 0;
+    return (...args) => {
+      const now = new Date().getTime();
+      if (now - lastCall < delay) return;
+      lastCall = now;
+      return func(...args);
+    };
+  };
+
+  // Detect scroll position with throttling
   useEffect(() => {
-    const handleScroll = () => {
+    const handleScroll = throttle(() => {
       setScrolled(window.scrollY > 50);
 
-      // Track which section is active
+      // Track which section is active using getBoundingClientRect for accuracy
       const sections = navLinks.map((link) => {
         const section = document.querySelector(link.href);
         if (!section) return null;
+        const rect = section.getBoundingClientRect();
         return {
           name: link.name,
-          top: section.offsetTop - 100,
-          bottom: section.offsetTop + section.offsetHeight - 100,
+          top: rect.top + window.scrollY,
+          bottom: rect.bottom + window.scrollY,
         };
       });
 
+      const scrollPosition = window.scrollY + 150;
       const currentSection = sections.find(
-        (sec) =>
-          sec && window.scrollY >= sec.top && window.scrollY < sec.bottom
+        (sec) => sec && scrollPosition >= sec.top && scrollPosition < sec.bottom
       );
 
       if (currentSection) {
@@ -42,11 +54,27 @@ export default function Navigation() {
       } else if (window.scrollY < 100) {
         setActiveSection('hero');
       }
-    };
+    }, 100);
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+      document.body.style.paddingRight = 'var(--scrollbar-width, 0px)';
+    } else {
+      document.body.style.overflow = '';
+      document.body.style.paddingRight = '';
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+      document.body.style.paddingRight = '';
+    };
+  }, [mobileMenuOpen]);
 
   // Close mobile menu when clicking outside
   useEffect(() => {
@@ -56,20 +84,33 @@ export default function Navigation() {
       }
     };
 
-    document.addEventListener('click', handleClickOutside);
-    return () => document.removeEventListener('click', handleClickOutside);
+    if (mobileMenuOpen) {
+      document.addEventListener('click', handleClickOutside);
+      return () => document.removeEventListener('click', handleClickOutside);
+    }
   }, [mobileMenuOpen]);
 
-  // Smooth scroll on click - Enhanced for mobile
-  const handleSmoothScroll = (e, href) => {
+  // Close menu on escape key
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape' && mobileMenuOpen) {
+        setMobileMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, [mobileMenuOpen]);
+
+  // Smooth scroll with better mobile handling
+  const handleSmoothScroll = useCallback((e, href) => {
     e.preventDefault();
-    setMobileMenuOpen(false); // Close menu first
+    setMobileMenuOpen(false);
     
-    // Small delay to let menu close animation finish
     setTimeout(() => {
       const target = document.querySelector(href);
       if (target) {
-        const navHeight = 88; // Height of your fixed nav (h-20 = 80px + top-2 = 8px)
+        const navHeight = window.innerWidth < 768 ? 76 : 88;
         const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight;
         
         window.scrollTo({
@@ -77,8 +118,8 @@ export default function Navigation() {
           behavior: 'smooth'
         });
       }
-    }, 100);
-  };
+    }, mobileMenuOpen ? 150 : 0);
+  }, [mobileMenuOpen]);
 
   return (
     <>
@@ -86,15 +127,14 @@ export default function Navigation() {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
-        className={`fixed top-2 left-0 right-0 z-50 transition-all duration-300 rounded-full
-          ${scrolled
-            ? 'bg-white shadow-md'
-            : 'bg-white/95 backdrop-blur-sm'
-          } w-[95%] max-w-7xl mx-auto`}
+        className={`fixed top-2 left-0 right-0 z-50 transition-all duration-300
+          ${scrolled ? 'bg-white shadow-lg' : 'bg-white/95 backdrop-blur-sm'}
+          w-[96%] sm:w-[95%] max-w-7xl mx-auto
+          rounded-2xl sm:rounded-full`}
       >
-        <div className="px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20">
-            {/* Logo */}
+        <div className="px-3 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16 sm:h-20">
+            {/* Logo - Responsive sizing */}
             <motion.a
               href="#hero"
               className="flex items-center flex-shrink-0"
@@ -107,7 +147,8 @@ export default function Navigation() {
                 alt="Sawava Logo"
                 width={140}
                 height={45}
-                className="object-contain"
+                className="object-contain w-24 sm:w-32 md:w-36 h-auto"
+                priority
               />
             </motion.a>
 
@@ -140,7 +181,7 @@ export default function Navigation() {
               <motion.a
                 href="#contact"
                 onClick={(e) => handleSmoothScroll(e, '#contact')}
-                className="ml-6 bg-[#e1292c] text-white px-5 py-2 rounded-full text-xs sm:text-sm font-semibold hover:bg-[#c32023] transition-all duration-200 shadow-sm hover:shadow-md whitespace-nowrap"
+                className="ml-6 bg-[#e1292c] text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-[#c32023] transition-all duration-200 shadow-sm hover:shadow-md whitespace-nowrap"
                 whileHover={{ scale: 1.03, y: -1 }}
                 whileTap={{ scale: 0.98 }}
                 transition={{ duration: 0.2 }}
@@ -149,30 +190,34 @@ export default function Navigation() {
               </motion.a>
             </div>
 
-            {/* Mobile Menu Button */}
+            {/* Mobile Menu Button - Enhanced */}
             <button
-              className="md:hidden relative w-10 h-10 flex items-center justify-center text-gray-700 hover:text-[#e1292c] transition-colors z-60"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="md:hidden relative w-11 h-11 flex items-center justify-center text-gray-700 hover:text-[#e1292c] transition-colors rounded-lg hover:bg-gray-100 active:bg-gray-200"
+              onClick={(e) => {
+                e.stopPropagation();
+                setMobileMenuOpen(!mobileMenuOpen);
+              }}
               aria-label="Toggle menu"
+              aria-expanded={mobileMenuOpen}
             >
               <div className="w-6 h-5 flex flex-col justify-between">
                 <motion.span
                   animate={mobileMenuOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
-                  className="w-full h-0.5 bg-current transition-all origin-center"
+                  className="w-full h-0.5 bg-current rounded-full"
                 />
                 <motion.span
-                  animate={mobileMenuOpen ? { opacity: 0 } : { opacity: 1 }}
-                  className="w-full h-0.5 bg-current transition-all"
+                  animate={mobileMenuOpen ? { opacity: 0, scale: 0.5 } : { opacity: 1, scale: 1 }}
+                  className="w-full h-0.5 bg-current rounded-full"
                 />
                 <motion.span
                   animate={mobileMenuOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
-                  className="w-full h-0.5 bg-current transition-all origin-center"
+                  className="w-full h-0.5 bg-current rounded-full"
                 />
               </div>
             </button>
           </div>
 
-          {/* Mobile Menu - Using AnimatePresence for better unmounting */}
+          {/* Mobile Menu - Enhanced with max-height */}
           <AnimatePresence>
             {mobileMenuOpen && (
               <motion.div
@@ -182,7 +227,7 @@ export default function Navigation() {
                 transition={{ duration: 0.3, ease: 'easeInOut' }}
                 className="md:hidden overflow-hidden"
               >
-                <div className="py-4 space-y-1">
+                <div className="py-3 pb-4 space-y-1 max-h-[calc(100vh-120px)] overflow-y-auto">
                   {navLinks.map((link, index) => (
                     <motion.a
                       key={link.name}
@@ -191,8 +236,8 @@ export default function Navigation() {
                       initial={{ x: -20, opacity: 0 }}
                       animate={{ x: 0, opacity: 1 }}
                       exit={{ x: -20, opacity: 0 }}
-                      transition={{ duration: 0.3, delay: index * 0.05 }}
-                      className={`block py-3 px-4 text-base font-medium rounded-md transition-colors
+                      transition={{ duration: 0.2, delay: index * 0.04 }}
+                      className={`block py-3 px-4 text-base font-medium rounded-lg transition-colors
                         ${activeSection === link.name
                           ? 'text-[#e1292c] bg-red-50'
                           : 'text-gray-700 hover:text-[#e1292c] hover:bg-gray-50'
@@ -207,8 +252,8 @@ export default function Navigation() {
                     initial={{ x: -20, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
                     exit={{ x: -20, opacity: 0 }}
-                    transition={{ duration: 0.3, delay: navLinks.length * 0.05 }}
-                    className="block mt-4 bg-[#e1292c] text-white px-6 py-3 rounded-md text-center font-semibold hover:bg-[#c32023] transition-colors"
+                    transition={{ duration: 0.2, delay: navLinks.length * 0.04 }}
+                    className="block mt-3 bg-[#e1292c] text-white px-6 py-3 rounded-lg text-center font-semibold hover:bg-[#c32023] transition-colors shadow-sm active:scale-[0.98]"
                   >
                     Get Started
                   </motion.a>
@@ -219,10 +264,35 @@ export default function Navigation() {
         </div>
       </motion.nav>
 
-      {/* Add scroll-margin to all sections */}
+      {/* Backdrop overlay for mobile menu */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 md:hidden"
+            onClick={() => setMobileMenuOpen(false)}
+          />
+        )}
+      </AnimatePresence>
+
+      {/* Global styles */}
       <style jsx global>{`
         section[id] {
           scroll-margin-top: 88px;
+        }
+        
+        @media (max-width: 768px) {
+          section[id] {
+            scroll-margin-top: 76px;
+          }
+        }
+
+        /* Calculate scrollbar width */
+        :root {
+          --scrollbar-width: 0px;
         }
       `}</style>
     </>
